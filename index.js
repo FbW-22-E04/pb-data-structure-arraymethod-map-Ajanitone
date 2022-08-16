@@ -1,12 +1,19 @@
 // Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
 //1
 function camelize(str) {
- //write your code here
+  return str
+    .split("-")
+    .filter(function (item, pos, self) {
+      return self.indexOf(item) == pos;
+    })
+    .join("");
 }
 
-console.log(camelize("background-color"))
-console.log(camelize("list-style-image"))
-console.log(camelize("-webkit-transition"))
+console.log("Q1:", camelize("background-color"));
+console.log("Q1:", camelize("list-style-image"));
+console.log("Q1:", camelize("-webkit-transition"));
+
+console.log("-----------------------------------------------------------");
 
 //Write the code to create another array from it, of objects with id and fullName, where fullName is generated from name and surname.
 //2
@@ -17,13 +24,32 @@ let mary = { name: "Mary", surname: "Key", id: 3 };
 
 let users = [john, pete, mary];
 
-//write your code here
+let usersMapped = users.map((user) => ({
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id,
+}));
 
-/*   usersMapped = [
-    { fullName: "John Smith", id: 1 },
-    { fullName: "Pete Hunt", id: 2 },
-    { fullName: "Mary Key", id: 3 }
-  ] */
+console.log("Q2:", usersMapped);
 
-console.log(usersMapped[0].id); // 1
-console.log(usersMapped[0].fullName); // John Smith
+console.log("-----------------------------------------------------------");
+
+// #### 2. You have an array of user objects, each one has name, surname and id.
+
+// * Write the code to create another array from it, of objects with id and fullName, where fullName is generated from name and surname.
+
+// For instance:
+// ```js
+// let john = { name: "John", surname: "Smith", id: 1 };
+// let pete = { name: "Pete", surname: "Hunt", id: 2 };
+// let mary = { name: "Mary", surname: "Key", id: 3 };
+
+// let users = [ john, pete, mary ];
+
+// let usersMapped = /* ... your code ... */
+
+let usersMapped1 = users.map((user) => ({
+  fullName: `${user.name} ${user.surname}`,
+}));
+
+console.log("Q2a:", usersMapped1);
+console.log("-----------------------------------------------------------");
